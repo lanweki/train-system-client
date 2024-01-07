@@ -1,0 +1,650 @@
+body {
+    font-family: 'Helvetica', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffefd5;
+}
+
+.logo {
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 60px; /* Adjust the width as needed */
+    height: auto; /* Maintain the aspect ratio */
+    margin-left: 10px; /* Optional margin for spacing */
+}
+
+header {
+    background-color: #6A994E;
+    color: #fff;
+    padding: 16px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 768px;
+}
+
+.menu-options {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-options a {
+    text-decoration: none;
+    color: #fff;
+    margin-right: 16px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.menu-options a:hover {
+    color: #F2E8CF;
+}
+
+.menu-link {
+    font-size: 18px;
+    cursor: pointer;
+    margin-right: 10px; /* Adjust the spacing between "Register" and "Login" */
+    color: #333; /* Set the color to match your design */
+    text-decoration: none; /* Remove any underlines or link styles */
+
+}
+
+.menu-link:hover {
+    color: #464646; /* Set the color to match your design */
+}
+
+.login-button {
+    background-color: #ffeb3b; /* Yellow color */
+    color: #333;
+    padding: 10px 20px;
+    border: 2px solid #ffeb3b; /* Yellow border */
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; /* Add transitions for a smoother effect */
+}
+
+.login-button:hover {
+    background-color: #ffed80; /* White background on hover */
+    border-color: #ffed80; /* White border on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Slightly larger shadow on hover */
+}
+
+
+
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    min-width: 768px;
+}
+
+.hero {
+    text-align: center;
+    background-color: #6A994E;
+    color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.hero-ticket {
+    text-align: center;
+    background-color: #6A994E;
+    color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 8px;
+}
+
+.hero p {
+    font-size: 1.2em;
+}
+
+.search-block {
+    background-color: #fff;
+    padding: 32px 32px 32px 32px;
+    border-radius: 8px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+}
+
+.form-group {
+    margin-bottom: 32px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #333;
+}
+
+select, input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 16px;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('https://img.icons8.com/material-outlined/24/000000/expand-arrow--v1.png');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+}
+
+.admin-select {
+    margin-bottom: 25px;
+}
+
+input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+
+
+button {
+    background-color: #333;
+    color: #fff;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+span.results-labelname {
+    display: block;
+    font-size: 22px;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+}
+
+.results-block {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    padding: 0px 16px 0px 16px;
+    border-radius: 8px;
+    min-width: 768px;
+}
+
+.additional-info {
+    display: flex;
+    justify-content: space-around;
+    background-color: #6A994E;
+    color: #fff;
+    padding: 40px;
+    min-width: 768px;
+}
+
+.info-card {
+    text-align: center;
+}
+
+.info-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 8px;
+}
+
+.info-card p {
+    font-size: 1.2em;
+    margin-bottom: 16px;
+}
+
+.info-link {
+    display: inline-block;
+    background-color: #fff;
+    color: #6A994E;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.info-link:hover {
+    background-color: #6A994E;
+    color: #fff;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 16px;
+    text-align: center;
+    min-width: 768px;
+}
+
+.legal-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 8px;
+    font-size: 1.2em;
+}
+
+.result-option {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 32px;
+    margin-bottom: 16px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+}
+
+.result-info {
+    display: flex;
+    width: 100%;
+}
+
+.departure,
+.arrival,
+.duration,
+.travel-class,
+.buy-button {
+    flex: 1;
+    padding: 0px 0px 0px 32px;
+    display: inline-grid;
+}
+
+.buy-button {
+    min-width: 152px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.departure span,
+.arrival span,
+.duration span,
+.train-number {
+    display: block;
+}
+
+.time {
+    font-size: 1.5em;
+}
+
+.date,
+.city,
+.duration-time {
+    opacity: 0.8;
+    font-size: 1em;
+}
+
+.travel-class label {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.number-price {
+    font-size: 1.5em;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.buy-button button {
+    background-color: #333;
+    color: #fff;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+}
+
+.buy-button button:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+}
+
+.error-block {
+    background-color: #f8d7da; /* Light red background color */
+    color: #721c24; /* Dark red text color */
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #f5c6cb; /* Border color */
+    margin-bottom: 32px;
+}
+
+.error-message {
+    font-size: 16px;
+}
+
+/*login pop-up*/
+/* Your existing CSS styles */
+
+.login-popup,
+.register-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+
+.login-popup form,
+.register-popup form {
+    position: relative; /* Add this line to make it a positioning context for the absolute position of the close button */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.register-popup form {
+    width: 600px;
+}
+
+.login-popup .popup-header,
+.register-popup .popup-header {
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.register-popup input,
+.register-popup button,
+.login-popup input,
+.login-popup button,
+.register-popup .success-message {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.register-popup button,
+.login-popup button {
+    margin-top: 20px;
+}
+
+.register-popup .close,
+.login-popup .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: black;
+    z-index: 1;
+}
+
+.register-popup .success-message {
+    background-color: #dff0d8; /* Light green background color */
+    border: 1px solid #d6e9c6; /* Border color */
+    border-radius: 4px;
+    padding: 15px;
+    color: #3c763d; /* Dark green text color */
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*fdf*/
+.payment-form {
+    background-color: #fff;
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #333;
+}
+
+input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 16px;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/*tabs*/
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    border-radius: 6px;
+    background-color: #333;
+    padding: 16px;
+}
+
+.tab-container {
+    display: flex;
+    gap: 10px; /* Adjust the gap between tabs as needed */
+}
+
+.tab {
+    background-color: #6A994E;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tab:hover {
+    background-color: #8dbf6e; /* Lighter green on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+.tab:hover {
+    background-color: #4D743E;
+}
+
+
+.content {
+    display: none;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/**/
+
+#reportIssueForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#issueText {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 16px;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    resize: none; /* Disable textarea resizing */
+    font-family: 'Helvetica', sans-serif; /* Use your preferred font-family */
+}
+
+#issueText:focus {
+    outline: none;
+    border-color: #6A994E; /* Change to your preferred focus color */
+}
+
+#reportIssueForm button {
+    background-color: #333;
+    color: #fff;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-right: auto; /* Move the button to the right */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#clearButton {
+    background-color: #ccc;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+    margin-left: auto; /* Move the button to the right */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#reportIssueForm button:hover,
+#clearButton:hover {
+    background-color: #555;
+}
+
+.trips-form {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    min-width: 768px;
+}
+
+.trips-form label,
+.trips-form select,
+.trips-form button {
+    margin-bottom: 16px;
+}
+
+/* Trips Content Styles */
+.trips-content {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    min-width: 768px;
+}
+
+.route-selection {
+    display: flex;
+    gap: 10px;
+}
+
+.route-selection select {
+    flex: 1;
+}
+
+.trips-content label,
+.trips-content select,
+.trips-content button {
+    margin-bottom: 16px;
+}
+
+/* Additional Styling (Adjust as needed) */
+.trip-dropdown {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.trip-dropdown select {
+    flex: 1;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+/* Adjust the gap and margin as needed */
+.trips-content button {
+    margin-top: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+}
+
+.save-button{
+    width: 200px;
+}
