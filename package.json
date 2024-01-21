@@ -1,7 +1,7 @@
 {
   "name": "train-system-client",
   "version": "0.1.0",
-  "proxy": "http://ttm-system-env.eba-fdgr6p8q.eu-central-1.elasticbeanstalk.com/",
+  "proxy": "http://ttm-system-env.eba-fdgr6p8q.eu-central-1.elasticbeanstalk.com",
   "private": true,
   "dependencies": {
     "@react-pdf-viewer/core": "^3.12.0",
