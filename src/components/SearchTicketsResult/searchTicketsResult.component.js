@@ -19,7 +19,7 @@ export function SearchTicketsResult() {
     const [errorMessage, setErrorMessage] = useState('');
     const [selectedPrices, setSelectedPrices] = useState({});
     const [chosenDepartureTrip, setChosenDepartureTrip] = useState(null);
-    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    const backendUrl = "http://ttm-system-env.eba-fdgr6p8q.eu-central-1.elasticbeanstalk.com/";
 
 
     const navigate = useNavigate();
