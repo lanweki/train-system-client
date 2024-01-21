@@ -14,7 +14,7 @@ export function Ticket() {
     const Download = () => {
         const handleDownload = async () => {
             const blob = await pdf(<TicketPdf departureTrip={state.departureTrip} ticketBooking={ticketBooking}/>).toBlob()
-            saveAs(blob, 'untitled.pdf')
+            saveAs(blob, 'trainticket.pdf')
         }
 
         return <button className="save-button" onClick={handleDownload}>Save</button>

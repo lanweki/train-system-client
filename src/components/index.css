@@ -352,6 +352,16 @@ select {
     margin-bottom: 32px;
 }
 
+.success-block {
+    background-color: #dff0d8; /* Light green background color */
+    color: #3c763d; /* Dark green text color */
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #d6e9c6; /* Border color */
+    margin-bottom: 10px;
+}
+
 .error-message {
     font-size: 16px;
 }
@@ -375,10 +385,11 @@ select {
 
 .login-popup form,
 .register-popup form {
-    position: relative; /* Add this line to make it a positioning context for the absolute position of the close button */
+    position: relative;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
+    width: 500px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     text-align: center;
 }
@@ -397,7 +408,9 @@ select {
 .register-popup button,
 .login-popup input,
 .login-popup button,
-.register-popup .success-message {
+.register-popup
+.success-message
+.error-message{
     margin-bottom: 10px;
     width: 100%;
     padding: 10px;
@@ -432,6 +445,34 @@ select {
     justify-content: center;
     align-items: center;
 }
+
+.register-popup .error-message {
+    background-color: #f8d7da; /* Light red background color */
+    border: 1px solid #f5c6cb; /* Border color */
+    border-radius: 4px;
+    padding: 15px;
+    color: #721c24; /* Dark red text color */
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-popup .error-message {
+    background-color: #f8d7da; /* Light red background color */
+    border: 1px solid #f5c6cb; /* Border color */
+    border-radius: 4px;
+    padding: 15px;
+    color: #721c24; /* Dark red text color */
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 /*fdf*/
 .payment-form {

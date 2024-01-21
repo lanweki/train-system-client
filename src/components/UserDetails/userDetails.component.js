@@ -5,21 +5,7 @@ import {AdditionalInfo} from "../AdditionalInfo/additionalInfo.component";
 import {Footer} from "../Footer/footer.component";
 
 
-function changeTab(tabName) {
-    // Hide all content sections
-    const contentSections = document.querySelectorAll('.content');
-    contentSections.forEach(section => {
-        section.style.display = 'none';
-    });
-
-    // Show the selected content section
-    const selectedContent = document.getElementById(`${tabName}Content`);
-    selectedContent.style.display = 'block';
-}
-
-
 export function UserDetails() {
-
     const [userDetails, setUserDetails] = useState([]);
     const [upcomingTrips, setUpcomingTrips] = useState([]);
     const [pastTrips, setPastTrips] = useState([]);
@@ -28,6 +14,25 @@ export function UserDetails() {
     const [newPassword, setNewPassword] = useState('');
     const [issueText, setIssueText] = useState('');
     const [repeatedNewPassword, setRepeatedNewPassword] = useState('');
+
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const [success, setSuccess] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
+
+    function changeTab(tabName) {
+        resetStates();
+        setError(false);
+        setSuccess(false);
+        const contentSections = document.querySelectorAll('.content');
+        contentSections.forEach(section => {
+            section.style.display = 'none';
+        });
+
+        const selectedContent = document.getElementById(`${tabName}Content`);
+        selectedContent.style.display = 'block';
+    }
 
     useEffect(() => {
         const userId = localStorage.getItem("userId");
@@ -46,7 +51,8 @@ export function UserDetails() {
             .catch((error) => console.error('Error fetching data:', error));
     }, [])
 
-    useEffect(() => {
+
+    const retrieveUpcomingTrips = () => {
         const userId = localStorage.getItem("userId");
 
         const requestOptions = {
@@ -67,7 +73,12 @@ export function UserDetails() {
                 console.log(data);
             })
             .catch((error) => console.error('Error fetching data:', error));
+    }
+
+    useEffect(() => {
+        retrieveUpcomingTrips();
     }, []);
+
 
     useEffect(() => {
         const userId = localStorage.getItem("userId");
@@ -104,7 +115,9 @@ export function UserDetails() {
         e.preventDefault();
 
         if (newPassword !== repeatedNewPassword) {
-            alert('Passwords do not match. Please try again.');
+            setError(true);
+            setErrorMessage('Passwords do not match. Please try again.');
+            resetStates()
         } else {
             const userId = localStorage.getItem("userId");
 
@@ -127,16 +140,18 @@ export function UserDetails() {
                     if (response.status === 200) {
                         return response.json();
                     } else {
+                        setError(true);
+                        setErrorMessage('Provided old password is incorrect.');
                         throw new Error(`Request failed with status ${response.status}`);
                     }
                 })
                 .then((data) => {
                     resetStates();
-                    alert('Password was successfully changed.');
+                    setSuccess(true);
+                    setSuccessMessage('Password was successfully changed.');
                 })
                 .catch((error) => {
                     resetStates();
-                    alert('Provided old password is incorrect.');
                     console.error('Error fetching data:', error)
                 });
         }
@@ -168,14 +183,44 @@ export function UserDetails() {
             })
             .then((data) => {
                 setIssueText('');
-                console.log(issueText);
-                alert('New issue has been reported.');
+                setSuccess(true);
+                setSuccessMessage('New issue has been reported.');
             })
             .catch((error) => {
-                resetStates();
+                setIssueText('');
                 console.error('Error fetching data:', error)
             });
     }
+
+    const handleCancel = (e, tripId) => {
+        e.preventDefault();
+
+        const confirmed = window.confirm("Are you sure you want to cancel this trip?");
+
+        if (confirmed) {
+            const requestOptions = {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'},
+            };
+
+            fetch(`/bookings?id=${tripId}`, requestOptions)
+                .then((response) => {
+                    if (response.status === 200) {
+                        return response.json();
+                    } else {
+                        throw new Error(`Request failed with status ${response.status}`);
+                    }
+                })
+                .then((data) => {
+                    retrieveUpcomingTrips();
+                    alert("Trip was successfully canceled.")
+                })
+                .catch((error) => {
+                    setIssueText('');
+                    console.error('Error fetching data:', error)
+                });
+        }
+    };
 
     return (
 
@@ -216,6 +261,8 @@ export function UserDetails() {
                                    onChange={(e) => {
                                        setNewPassword(e.target.value)
                                    }}
+                                   pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                                   title="Password must be at least 8 characters long and include at least one letter and one number."
                                    required></input>
                         </div>
                         <div className="form-group">
@@ -224,8 +271,23 @@ export function UserDetails() {
                                    placeholder="Repeat new password"
                                    onChange={(e) => {
                                        setRepeatedNewPassword(e.target.value)
-                                   }} required></input>
+                                   }}
+                                   pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                                   title="Password must be at least 8 characters long and include at least one letter and one number."
+                                   required></input>
                         </div>
+                        {success && (
+                            <section className="success-block">
+                                <div className="error-message">{successMessage}</div>
+                            </section>
+                        )}
+                        {error && (
+                            <section className="error-block">
+                                <div className="error-message">
+                                    {errorMessage}
+                                </div>
+                            </section>
+                        )}
                         <button type="submit">Submit</button>
                     </form>
                 </section>
@@ -255,7 +317,11 @@ export function UserDetails() {
                                         <span className="travelClass">{trip.seatClass}</span>
                                     </div>
                                     <div className="cancel-div">
-                                        <button>Cancel</button>
+                                        <button onClick={(e) => {
+                                            handleCancel(e, trip.id)
+                                        }}>
+                                            Cancel
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -301,7 +367,14 @@ export function UserDetails() {
                                       setIssueText(e.target.value)
                                   }}
                                   value={issueText}
+                                  pattern=".{20,}"
+                                  title="Please enter at least 20 characters"
                                   required></textarea>
+                        {success && (
+                            <section className="success-block">
+                                <div className="error-message">{successMessage}</div>
+                            </section>
+                        )}
                         <button type="submit">Submit</button>
                     </form>
                 </section>

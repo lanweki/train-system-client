@@ -80,6 +80,17 @@ export function SearchTicketsResult() {
             return;
         }
 
+        const currentDate = new Date();
+        const selectedDate = new Date(departureDate);
+
+        console.log(currentDate)
+        console.log(selectedDate)
+        // if (selectedDate < currentDate) {
+        //     setError(true);
+        //     setErrorMessage('It seems like you\'re trying to purchase ticket for a past trip. Please select a departure date in the future.');
+        //     return;
+        // }
+
         const searchRequest = {
             departureCity: selectedDeparture,
             destinationCity: selectedDestination,
@@ -109,7 +120,7 @@ export function SearchTicketsResult() {
             .catch((error) => console.error('Error fetching data:', error));
     }
 
-    const handleBuyButtonClick = (e, trip, selectedPrice, selectedClass) => {
+    const handleBuyButtonClick = async (e, trip, selectedPrice, selectedClass) => {
         const chosenTrip = {
             trip: trip,
             tripInfo: tripInfo,
@@ -117,10 +128,24 @@ export function SearchTicketsResult() {
             selectedPrice: selectedPrice,
         };
 
-        //validateSeatAvailiability(chosenTrip);
-        navigate('/payment', {state: {chosenTrip}});
+        const requestOptions = {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+        };
 
-        setChosenDepartureTrip(null);
+        fetch(`/trips/seats?tripId=${trip.id}&seatClass=${selectedClass}`, requestOptions)
+            .then((response) => {
+                if (response.status === 200) {
+                    navigate('/payment', {state: {chosenTrip}});
+                    setChosenDepartureTrip(null);
+                } else {
+                    alert(`There are no available seats for selected class.\nSelected: (${selectedClass})`)
+                    throw new Error(`Request failed with status ${response.status}`);
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error)
+            });
     };
 
     return (

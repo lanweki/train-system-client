@@ -21,44 +21,4 @@ function App() {
     );
 }
 
-// document.addEventListener("DOMContentLoaded", function () {
-//     const searchForm = document.getElementById("searchForm");
-//     const searchButton = document.getElementById("searchButton");
-//
-//     searchButton.addEventListener("click", handleSearch);
-//
-//     function handleSearch() {
-//         const departure = document.getElementById("departure").value;
-//         const destination = document.getElementById("destination").value;
-//         const departureDate = document.getElementById("departureDate").value;
-//         const returnDate = document.getElementById("returnDate").value;
-//
-//         const requestData = {
-//             departure,
-//             destination,
-//             departureDate,
-//             returnDate
-//         };
-//
-//         // Assuming your API endpoint is 'your-api-endpoint'
-//         const apiUrl = 'your-api-endpoint';
-//
-//         fetch(apiUrl, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify(requestData),
-//         })
-//             .then(response => response.json())
-//             .then(data => {
-//                 // Handle the API response data
-//                 console.log(data);
-//             })
-//             .catch(error => {
-//                 console.error('Error:', error);
-//             });
-//     }
-// });
-
 export default App;

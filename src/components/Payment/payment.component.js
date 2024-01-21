@@ -83,7 +83,7 @@ export function Payment() {
                 <form id="paymentForm" onSubmit={purchaseTicket}>
                     <h2>Personal information</h2>
                     <div className="form-group">
-                        <input type="text" id="cardNumber" name="cardNumber" placeholder="Email" value={email}
+                        <input type="email" id="cardNumber" name="cardNumber" placeholder="Email" value={email}
                                onChange={(e) => setEmail(e.target.value)} required></input>
                     </div>
                     <div className="form-group">
@@ -102,16 +102,22 @@ export function Payment() {
                     <div className="form-group">
                         <label form="cardNumber">Card Number</label>
                         <input type="text" id="cardNumber" name="cardNumber" placeholder="**** **** **** ****"
+                               pattern="\d{4} \d{4} \d{4} \d{4}"
+                               title="Please enter a valid 16-digit card number in the format: 1234 5678 9012 3456"
                                required></input>
                     </div>
                     <div className="form-group">
                         <label form="expirationDate">Expiration Date</label>
                         <input type="text" id="expirationDate" name="expirationDate" placeholder="MM/YY"
+                               pattern="^(0[1-9]|1[0-2])\/\d{2}$"
+                               title="Please enter a valid expiration date in the format: MM/YY"
                                required></input>
                     </div>
                     <div className="form-group">
                         <label form="cvv">CVV</label>
-                        <input type="text" id="cvv" name="cvv" placeholder="***" required></input>
+                        <input type="text" id="cvv" name="cvv" placeholder="***" pattern="\d{3}"
+                               title="Please enter a valid 3-digit CVV"
+                               required></input>
                     </div>
                     <button type="submit">Pay Now</button>
                 </form>
