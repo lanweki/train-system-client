@@ -19,11 +19,13 @@ export function SearchTicketsResult() {
     const [errorMessage, setErrorMessage] = useState('');
     const [selectedPrices, setSelectedPrices] = useState({});
     const [chosenDepartureTrip, setChosenDepartureTrip] = useState(null);
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('/routes/departure')
+        fetch(`${backendUrl}/routes/departure`)
             .then((response) => response.json())
             .then((data) => {
                 setDepartureCities(data.cities)
@@ -32,7 +34,7 @@ export function SearchTicketsResult() {
     }, [])
 
     useEffect(() => {
-        fetch('/routes/destination')
+        fetch(`${backendUrl}/routes/destination`)
             .then((response) => response.json())
             .then((data) => {
                 setDestinationCities(data.cities)
@@ -83,13 +85,11 @@ export function SearchTicketsResult() {
         const currentDate = new Date();
         const selectedDate = new Date(departureDate);
 
-        console.log(currentDate)
-        console.log(selectedDate)
-        // if (selectedDate < currentDate) {
-        //     setError(true);
-        //     setErrorMessage('It seems like you\'re trying to purchase ticket for a past trip. Please select a departure date in the future.');
-        //     return;
-        // }
+        if (selectedDate < currentDate) {
+            setError(true);
+            setErrorMessage('It seems like you\'re trying to purchase ticket for a past trip. Please select a departure date in the future.');
+            return;
+        }
 
         const searchRequest = {
             departureCity: selectedDeparture,
@@ -101,7 +101,7 @@ export function SearchTicketsResult() {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(searchRequest)
         };
-        fetch('/trips', requestOptions)
+        fetch(`${backendUrl}/trips`, requestOptions)
             .then((response) => {
                 if (response.status === 200) {
                     return response.json();
@@ -133,7 +133,7 @@ export function SearchTicketsResult() {
             headers: {'Content-Type': 'application/json'},
         };
 
-        fetch(`/trips/seats?tripId=${trip.id}&seatClass=${selectedClass}`, requestOptions)
+        fetch(`${backendUrl}/trips/seats?tripId=${trip.id}&seatClass=${selectedClass}`, requestOptions)
             .then((response) => {
                 if (response.status === 200) {
                     navigate('/payment', {state: {chosenTrip}});

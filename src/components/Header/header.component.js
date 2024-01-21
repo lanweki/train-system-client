@@ -13,8 +13,8 @@ export function Header() {
     const [registerSuccess, setRegisterSuccess] = useState(false);
     const [error, setError] = useState(false);
 
-
     const navigate = useNavigate();
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -25,7 +25,7 @@ export function Header() {
             password: password,
         };
 
-        fetch('/users/login', {
+        fetch(`${backendUrl}/users/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ export function Header() {
             email: email,
         };
 
-        fetch('/users/register', {
+        fetch(`${backendUrl}/users/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

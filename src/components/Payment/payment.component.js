@@ -12,6 +12,7 @@ export function Payment() {
     const [surname, setSurname] = useState('');
 
     const navigate = useNavigate();
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     const purchaseTicket = (e) => {
         e.preventDefault();
@@ -27,7 +28,7 @@ export function Payment() {
             seatClass: departureTrip.selectedClass
         };
 
-        fetch('/bookings', {
+        fetch(`${backendUrl}/bookings`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

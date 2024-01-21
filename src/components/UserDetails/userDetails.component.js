@@ -20,6 +20,7 @@ export function UserDetails() {
 
     const [success, setSuccess] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     function changeTab(tabName) {
         resetStates();
@@ -42,7 +43,7 @@ export function UserDetails() {
             headers: {'Content-Type': 'application/json'},
         };
 
-        fetch(`/users/${userId}/details`, requestOptions)
+        fetch(`${backendUrl}/users/${userId}/details`, requestOptions)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
@@ -60,7 +61,7 @@ export function UserDetails() {
             headers: {'Content-Type': 'application/json'},
         };
 
-        fetch(`/bookings/upcoming?userId=${userId}`, requestOptions)
+        fetch(`${backendUrl}/bookings/upcoming?userId=${userId}`, requestOptions)
             .then((response) => {
                 if (response.status === 200) {
                     return response.json();
@@ -88,7 +89,7 @@ export function UserDetails() {
             headers: {'Content-Type': 'application/json'},
         };
 
-        fetch(`/bookings/past?userId=${userId}`, requestOptions)
+        fetch(`${backendUrl}/bookings/past?userId=${userId}`, requestOptions)
             .then((response) => {
                 if (response.status === 200) {
                     return response.json();
@@ -135,7 +136,7 @@ export function UserDetails() {
                 body: JSON.stringify(changePasswordRequest)
             };
 
-            fetch("/users/password/change", requestOptions)
+            fetch(`${backendUrl}/users/password/change`, requestOptions)
                 .then((response) => {
                     if (response.status === 200) {
                         return response.json();
@@ -173,7 +174,7 @@ export function UserDetails() {
             body: JSON.stringify(issueRequest)
         };
 
-        fetch("/users/issues", requestOptions)
+        fetch(`${backendUrl}/users/issues`, requestOptions)
             .then((response) => {
                 if (response.status === 200) {
                     return response.json();
@@ -203,7 +204,7 @@ export function UserDetails() {
                 headers: {'Content-Type': 'application/json'},
             };
 
-            fetch(`/bookings?id=${tripId}`, requestOptions)
+            fetch(`${backendUrl}/bookings?id=${tripId}`, requestOptions)
                 .then((response) => {
                     if (response.status === 200) {
                         return response.json();
@@ -223,8 +224,6 @@ export function UserDetails() {
     };
 
     return (
-
-
         <body>
         <Header/>
         <main>

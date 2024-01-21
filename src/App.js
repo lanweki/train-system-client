@@ -6,7 +6,6 @@ import {UserDetails} from "./components/UserDetails/userDetails.component";
 import {Admin} from "./components/Admin/admin.component";
 import {Ticket} from "./components/Ticket/ticket.component";
 
-
 function App() {
     return (
         <Router>

@@ -41,10 +41,10 @@ export function Admin() {
     const [deleteUsername, setDeleteUsername] = useState('');
 
     const userId = localStorage.getItem("userId")
-
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     useEffect(() => {
-        fetch('/routes/departure')
+        fetch(`${backendUrl}/routes/departure`)
             .then((response) => response.json())
             .then((data) => {
                 setDepartureCities(data.cities)
@@ -53,7 +53,7 @@ export function Admin() {
     }, [])
 
     useEffect(() => {
-        fetch('/routes/destination')
+        fetch(`${backendUrl}/routes/destination`)
             .then((response) => response.json())
             .then((data) => {
                 setDestinationCities(data.cities)
@@ -62,7 +62,7 @@ export function Admin() {
     }, [])
 
     useEffect(() => {
-        fetch('/admin/trains')
+        fetch(`${backendUrl}/admin/trains`)
             .then((response) => response.json())
             .then((data) => {
                 setTrains(data)
@@ -71,7 +71,7 @@ export function Admin() {
     }, [])
 
     const fetchIssues = () => {
-        fetch('/admin/issues')
+        fetch(`${backendUrl}/admin/issues`)
             .then((response) => response.json())
             .then((data) => {
                 setIssues(data);
@@ -126,7 +126,7 @@ export function Admin() {
             body: JSON.stringify(addTrainRequest)
         };
 
-        fetch("/admin/trains", requestOptions)
+        fetch(`${backendUrl}/admin/trains`, requestOptions)
             .then((response) => {
                 if (response.status === 200) {
                     return response.json();
@@ -162,7 +162,7 @@ export function Admin() {
             body: JSON.stringify(addRouteRequest)
         };
 
-        fetch("/admin/routes", requestOptions)
+        fetch(`${backendUrl}/admin/routes`, requestOptions)
             .then((response) => {
                 if (response.status === 200) {
                     return response.json();
@@ -187,7 +187,7 @@ export function Admin() {
             headers: {'Content-Type': 'application/json'}
         };
 
-        fetch(`/admin/routes?departure=${departure}&destination=${destination}`, requestOptions)
+        fetch(`${backendUrl}/admin/routes?departure=${departure}&destination=${destination}`, requestOptions)
             .then((response) => {
                 if (response.status === 200) {
                     return response.json();
@@ -247,7 +247,7 @@ export function Admin() {
             body: JSON.stringify(addTripRequest)
         };
 
-        fetch("/admin/trips", requestOptions)
+        fetch(`${backendUrl}/admin/trips`, requestOptions)
             .then((response) => {
                 if (response.status === 200) {
                     return response.json();
@@ -271,7 +271,7 @@ export function Admin() {
             headers: {'Content-Type': 'application/json'},
         };
 
-        fetch(`/admin/issues?id=${id}`, requestOptions)
+        fetch(`${backendUrl}/admin/issues?id=${id}`, requestOptions)
             .then((response) => {
                 if (response.status === 200) {
                     return response.json();
@@ -297,7 +297,7 @@ export function Admin() {
             headers: {'Content-Type': 'application/json'},
         };
 
-        fetch(`/admin/users?username=${deleteUsername}`, requestOptions)
+        fetch(`${backendUrl}/admin/users?username=${deleteUsername}`, requestOptions)
             .then((response) => {
                 if (response.status === 200) {
                     return response.json();
