@@ -45,6 +45,38 @@ export function Payment() {
             });
     }
 
+    const [ccNumber, setCcNumber] = useState("");
+
+    const formatAndSetCcNumber = e => {
+        const inputVal = e.target.value.replace(/ /g, "");
+        let inputNumbersOnly = inputVal.replace(/\D/g, "");
+
+        if (inputNumbersOnly.length > 16) {
+            inputNumbersOnly = inputNumbersOnly.substr(0, 16);
+        }
+
+        const splits = inputNumbersOnly.match(/.{1,4}/g);
+
+        let spacedNumber = "";
+        if (splits) {
+            spacedNumber = splits.join(" ");
+        }
+
+        setCcNumber(spacedNumber);
+    };
+
+    const [expirationDate, setExpirationDate] = useState();
+    const handleExpDateChange = (event) => {
+        const inputValue = event.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+        const month = inputValue.slice(0, 2);
+
+        if (month.length === 2) {
+            setExpirationDate(month + (inputValue.length > 2 ? '/' + inputValue.slice(2, 4) : ''));
+        } else {
+            setExpirationDate(month);
+        }
+    }
+
     return (
         <body>
         <Header/>
@@ -103,6 +135,7 @@ export function Payment() {
                     <div className="form-group">
                         <label form="cardNumber">Card Number</label>
                         <input type="text" id="cardNumber" name="cardNumber" placeholder="**** **** **** ****"
+                               value={ccNumber} onChange={formatAndSetCcNumber}
                                pattern="\d{4} \d{4} \d{4} \d{4}"
                                title="Please enter a valid 16-digit card number in the format: 1234 5678 9012 3456"
                                required></input>
@@ -110,6 +143,7 @@ export function Payment() {
                     <div className="form-group">
                         <label form="expirationDate">Expiration Date</label>
                         <input type="text" id="expirationDate" name="expirationDate" placeholder="MM/YY"
+                               value={expirationDate} onChange={handleExpDateChange}
                                pattern="^(0[1-9]|1[0-2])\/\d{2}$"
                                title="Please enter a valid expiration date in the format: MM/YY"
                                required></input>
